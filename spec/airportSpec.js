@@ -2,6 +2,7 @@ describe('Airport', () => {
 
   beforeEach(() => {
     heathrow = new Airport;
+    plane = new Plane;
   });
 
   it('is an Airport', () => {
@@ -12,7 +13,11 @@ describe('Airport', () => {
     expect(heathrow.hangar).toEqual([]);
   });
 
-  describe('.land', () => {
+  describe('.land()', () => {
 
+    it('will land a plane in the hangar', () => {
+      heathrow.land(plane);
+      expect(heathrow.hangar).toContain(plane);
+    });
   });
 });
