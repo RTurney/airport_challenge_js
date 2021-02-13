@@ -33,4 +33,6 @@ I want to prevent landing when weather is stormy
 ## Developement notes:
 
 * So as usual the first step is going to be setting up a test for the plane class
-* 
+* Plane class added.
+* All tests green
+* Now to add an airport spec
