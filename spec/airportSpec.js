@@ -5,7 +5,7 @@ describe('Airport', () => {
 
   beforeEach(() => {
     heathrow = new Airport;
-    plane = new Plane;
+    plane = new Plane('plane');
   });
 
   describe('properties', () => {
@@ -32,6 +32,20 @@ describe('Airport', () => {
       heathrow.land(plane);
       heathrow.takeOff(plane);
       expect(heathrow.hangar).not.toContain(plane);
+    });
+
+    it('will take off a specific plane from the hangar', () => {
+      let jet = new Plane('jet');
+      let boeing747 = new Plane('boeing747');
+      let biplane = new Plane('biplane');
+      heathrow.land(plane);
+      heathrow.land(jet);
+      heathrow.land(boeing747);
+      heathrow.land(biplane);
+      heathrow.takeOff(jet);
+
+      expect(heathrow.hangar).not.toContain(jet);
+      expect(heathrow.hangar).toContain(plane);
     });
   });
 });
