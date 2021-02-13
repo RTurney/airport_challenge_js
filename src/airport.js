@@ -5,4 +5,8 @@ class Airport {
     this.hangar = [];
   }
 
+  land(plane) {
+    this.hangar.push(plane);
+  }
+
 }

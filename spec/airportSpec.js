@@ -5,12 +5,14 @@ describe('Airport', () => {
     plane = new Plane;
   });
 
-  it('is an Airport', () => {
-    expect(heathrow).toBeInstanceOf(Airport);
-  });
+  describe('properties', () => {
+    it('is an Airport', () => {
+      expect(heathrow).toBeInstanceOf(Airport);
+    });
 
-  it('has an empty hangar',() => {
-    expect(heathrow.hangar).toEqual([]);
+    it('has an empty hangar',() => {
+      expect(heathrow.hangar).toEqual([]);
+    });
   });
 
   describe('.land()', () => {
