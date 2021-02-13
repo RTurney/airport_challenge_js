@@ -22,4 +22,13 @@ describe('Airport', () => {
       expect(heathrow.hangar).toContain(plane);
     });
   });
+
+  describe('.takeOff()', () => {
+
+    it('will take a plane off from the airport', () => {
+      heathrow.land(plane);
+      heathrow.takeOff(plane);
+      expect(heathrow.hangar).not.toContain(plane);
+    });
+  });
 });
