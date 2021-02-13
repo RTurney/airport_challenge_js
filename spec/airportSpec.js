@@ -1,5 +1,8 @@
 describe('Airport', () => {
 
+  let heathrow;
+  let plane;
+
   beforeEach(() => {
     heathrow = new Airport;
     plane = new Plane;
