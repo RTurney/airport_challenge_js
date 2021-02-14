@@ -3,11 +3,17 @@ describe('Airport', () => {
   let heathrow;
   let plane;
   let weather;
+  let jet;
+  let boeing747;
+  let biplane;
 
   beforeEach(() => {
     heathrow = new Airport;
     plane = new Plane('plane');
     weather = new Weather;
+    jet = new Plane('jet');
+    boeing747 = new Plane('boeing747');
+    biplane = new Plane('biplane');
   });
 
   describe('properties', () => {
@@ -33,7 +39,7 @@ describe('Airport', () => {
       for (var i = 0; i < 10; i++) {
         heathrow.land(plane, weather);
       }
-      let jet = new Plane('jet');
+    
       expect(heathrow.land(jet, weather)).toEqual('Hangar is full!');
     });
 
@@ -53,10 +59,7 @@ describe('Airport', () => {
 
     it('will take off a specific plane from the hangar', () => {
       spyOn(weather, "isStormy").and.returnValue(false);
-      
-      let jet = new Plane('jet');
-      let boeing747 = new Plane('boeing747');
-      let biplane = new Plane('biplane');
+
       heathrow.land(plane, weather);
       heathrow.land(jet, weather);
       heathrow.land(boeing747, weather);
@@ -67,6 +70,19 @@ describe('Airport', () => {
       expect(heathrow.hangar).toContain(plane);
       expect(heathrow.hangar).toContain(boeing747);
       expect(heathrow.hangar).toContain(biplane);
+    });
+
+    it("prevents takeOff when wether is stormy", () => {
+      spyOn(weather, "isStormy").and.returnValue(false);
+
+      heathrow.land(plane, weather);
+      heathrow.land(jet, weather);
+      heathrow.land(boeing747, weather);
+      heathrow.land(biplane, weather);
+
+      spyOn(weather, "isStormy").and.returnValue(true);
+      expect(heathrow.takeOff(plane, weather))toEqual("It\'s too stormy to take off!");
+      expect(heathrow.hangar).toContain(plane);
     });
   });
 
