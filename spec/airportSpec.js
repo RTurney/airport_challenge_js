@@ -30,7 +30,7 @@ describe('Airport', () => {
         heathrow.land(plane);
       }
       let jet = new Plane('jet');
-      expect(heathrow.land(jet)).toThrowError("Hangar is full!");
+      expect(heathrow.land(jet)).toEqual('Hangar is full!');
     });
   });
 
@@ -56,6 +56,18 @@ describe('Airport', () => {
       expect(heathrow.hangar).toContain(plane);
       expect(heathrow.hangar).toContain(boeing747);
       expect(heathrow.hangar).toContain(biplane);
+    });
+  });
+
+  describe('.hangarCapacity', () => {
+
+    it('has a default capacity of ten', () => {
+      expect(heathrow.hangarCapacity).toEqual(10);
+    });
+
+    it('can be overridden when building a new airport', () => {
+      let stanstead = new Airport(12);
+      expect(stanstead.hangarCapacity).toEqual(12);
     });
   });
 });

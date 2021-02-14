@@ -1,11 +1,15 @@
 // Airport class
 class Airport {
 
-  constructor() {
+  constructor(hangarCapacity = 10) {
     this.hangar = [];
+    this.hangarCapacity = hangarCapacity;
   }
 
   land(plane) {
+    if (this.hangar.length === this.hangarCapacity) {
+      return "Hangar is full!";
+    }
     this.hangar.push(plane);
   }
 
