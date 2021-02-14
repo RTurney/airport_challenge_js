@@ -7,9 +7,7 @@ class Airport {
   }
 
   land(plane) {
-    if (this.hangar.length === this.hangarCapacity) {
-      return "Hangar is full!";
-    }
+    if (this._checkHangar(plane)) return "Hangar is full!";
     this.hangar.push(plane);
   }
 
@@ -21,6 +19,12 @@ class Airport {
         return true;
       }
     });
+  }
+
+  _checkHangar(plane) {
+    if (this.hangar.length === this.hangarCapacity) {
+      return true;
+    }
   }
 
 }
