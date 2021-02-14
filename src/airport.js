@@ -12,7 +12,8 @@ class Airport {
     this.hangar.push(plane);
   }
 
-  takeOff(plane) {
+  takeOff(plane, weather) {
+    if (weather.isStormy()) return "It\'s too stormy to take off!";
     this.hangar = this.hangar.filter((planeInHangar) => {
       if(planeInHangar.name === plane.name){
         return false;

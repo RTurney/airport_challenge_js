@@ -1,8 +1,9 @@
 describe('Airport', () => {
 
   let heathrow;
-  let plane;
   let weather;
+  let storm;
+  let plane;
   let jet;
   let boeing747;
   let biplane;
@@ -11,6 +12,7 @@ describe('Airport', () => {
     heathrow = new Airport;
     plane = new Plane('plane');
     weather = new Weather;
+    storm = new Weather;
     jet = new Plane('jet');
     boeing747 = new Plane('boeing747');
     biplane = new Plane('biplane');
@@ -39,21 +41,23 @@ describe('Airport', () => {
       for (var i = 0; i < 10; i++) {
         heathrow.land(plane, weather);
       }
-    
+
       expect(heathrow.land(jet, weather)).toEqual('Hangar is full!');
     });
 
     it('will not land a plane if the weather is stormy', () => {
-      spyOn(weather, "isStormy").and.returnValue(true);
-      expect(heathrow.land(plane, weather)).toEqual('It\'s too stormy to land!')
+      spyOn(storm, "isStormy").and.returnValue(true);
+      expect(heathrow.land(plane, storm)).toEqual('It\'s too stormy to land!')
     });
   });
 
   describe('.takeOff()', () => {
 
     it('will take a plane off from the airport', () => {
+      spyOn(weather, "isStormy").and.returnValue(false);
+
       heathrow.land(plane, weather);
-      heathrow.takeOff(plane);
+      heathrow.takeOff(plane, weather);
       expect(heathrow.hangar).not.toContain(plane);
     });
 
@@ -64,7 +68,7 @@ describe('Airport', () => {
       heathrow.land(jet, weather);
       heathrow.land(boeing747, weather);
       heathrow.land(biplane, weather);
-      heathrow.takeOff(jet);
+      heathrow.takeOff(jet, weather);
 
       expect(heathrow.hangar).not.toContain(jet);
       expect(heathrow.hangar).toContain(plane);
@@ -80,8 +84,9 @@ describe('Airport', () => {
       heathrow.land(boeing747, weather);
       heathrow.land(biplane, weather);
 
-      spyOn(weather, "isStormy").and.returnValue(true);
-      expect(heathrow.takeOff(plane, weather))toEqual("It\'s too stormy to take off!");
+      spyOn(storm, "isStormy").and.returnValue(true);
+      
+      expect(heathrow.takeOff(plane, storm)).toEqual("It\'s too stormy to take off!");
       expect(heathrow.hangar).toContain(plane);
     });
   });
