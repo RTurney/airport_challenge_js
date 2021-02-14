@@ -61,3 +61,6 @@ I want to prevent landing when weather is stormy
 * All tests green
 * Add guard condition to land method so that planes can not land when it is stormy
 * Add spec for takeOff to prevent takeOff when weather is stormy
+* Add guard condition for takeOff during storms
+* All tests green
+* All user stories passed 
