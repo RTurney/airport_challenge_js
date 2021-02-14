@@ -24,6 +24,14 @@ describe('Airport', () => {
       heathrow.land(plane);
       expect(heathrow.hangar).toContain(plane);
     });
+
+    it('will not allow a plane to land if the hangar is full', () => {
+      for (var i = 0; i < 10; i++) {
+        heathrow.land(plane);
+      }
+      let jet = new Plane('jet');
+      expect(heathrow.land(jet)).toThrowError("Hangar is full!");
+    });
   });
 
   describe('.takeOff()', () => {
@@ -46,6 +54,8 @@ describe('Airport', () => {
 
       expect(heathrow.hangar).not.toContain(jet);
       expect(heathrow.hangar).toContain(plane);
+      expect(heathrow.hangar).toContain(boeing747);
+      expect(heathrow.hangar).toContain(biplane);
     });
   });
 });
