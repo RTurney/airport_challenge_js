@@ -2,10 +2,12 @@ describe('Airport', () => {
 
   let heathrow;
   let plane;
+  let weather;
 
   beforeEach(() => {
     heathrow = new Airport;
     plane = new Plane('plane');
+    weather = new Weather;
   });
 
   describe('properties', () => {
@@ -31,6 +33,11 @@ describe('Airport', () => {
       }
       let jet = new Plane('jet');
       expect(heathrow.land(jet)).toEqual('Hangar is full!');
+    });
+
+    it('will not land a plane if the weather is stormy', () => {
+      spyOn(weather, "isStormy").and.returnValue(true);
+      expect(heathrow.land(plane)).toEqual('It\'s too stormy to land!')
     });
   });
 
