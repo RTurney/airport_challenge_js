@@ -23,40 +23,44 @@ describe('Airport', () => {
   describe('.land()', () => {
 
     it('will land a plane in the hangar', () => {
-      heathrow.land(plane);
+      spyOn(weather, "isStormy").and.returnValue(false);
+      heathrow.land(plane, weather);
       expect(heathrow.hangar).toContain(plane);
     });
 
     it('will not allow a plane to land if the hangar is full', () => {
+      spyOn(weather, "isStormy").and.returnValue(false);
       for (var i = 0; i < 10; i++) {
-        heathrow.land(plane);
+        heathrow.land(plane, weather);
       }
       let jet = new Plane('jet');
-      expect(heathrow.land(jet)).toEqual('Hangar is full!');
+      expect(heathrow.land(jet, weather)).toEqual('Hangar is full!');
     });
 
     it('will not land a plane if the weather is stormy', () => {
       spyOn(weather, "isStormy").and.returnValue(true);
-      expect(heathrow.land(plane)).toEqual('It\'s too stormy to land!')
+      expect(heathrow.land(plane, weather)).toEqual('It\'s too stormy to land!')
     });
   });
 
   describe('.takeOff()', () => {
 
     it('will take a plane off from the airport', () => {
-      heathrow.land(plane);
+      heathrow.land(plane, weather);
       heathrow.takeOff(plane);
       expect(heathrow.hangar).not.toContain(plane);
     });
 
     it('will take off a specific plane from the hangar', () => {
+      spyOn(weather, "isStormy").and.returnValue(false);
+      
       let jet = new Plane('jet');
       let boeing747 = new Plane('boeing747');
       let biplane = new Plane('biplane');
-      heathrow.land(plane);
-      heathrow.land(jet);
-      heathrow.land(boeing747);
-      heathrow.land(biplane);
+      heathrow.land(plane, weather);
+      heathrow.land(jet, weather);
+      heathrow.land(boeing747, weather);
+      heathrow.land(biplane, weather);
       heathrow.takeOff(jet);
 
       expect(heathrow.hangar).not.toContain(jet);

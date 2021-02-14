@@ -6,7 +6,6 @@ class Weather {
   }
 
   isStormy() {
-    console.log(this.wind);
     return this.wind >= 80 ? true : false;
   }
 }

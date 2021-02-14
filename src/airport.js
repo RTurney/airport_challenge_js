@@ -6,7 +6,8 @@ class Airport {
     this.hangarCapacity = hangarCapacity;
   }
 
-  land(plane) {
+  land(plane, weather) {
+    if (weather.isStormy()) return "It\'s too stormy to land!";
     if (this._checkHangar(plane)) return "Hangar is full!";
     this.hangar.push(plane);
   }
@@ -26,5 +27,4 @@ class Airport {
       return true;
     }
   }
-
 }
