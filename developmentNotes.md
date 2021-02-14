@@ -36,3 +36,25 @@ I want to prevent landing when weather is stormy
 * Plane class added.
 * All tests green
 * Now to add an airport spec
+* Add airport class
+* Add spec for hangar property
+* Pass spec for hangar
+* Add test for landing a plane
+* Add land plane function to airport
+* All tests green
+* Add spec for taking plane off
+* Adding a take off function was much harder in javascript. Had to add a a 'name' property for planes. This is so you can actually match the plane passed into takeOff function with the plane in the array.
+* All tests green.
+* Add spec to ensure takeOff only removes the correct plane
+* All tests green
+* Add spec for maximum capacity for airport hangar
+* Add maximum capacity in constructor{} for airport class
+* All tests green
+* Accidentally completed user story for overriding hangar capacity at the same time
+* Add spec to ensure this is the case
+* All tests green
+* Now to add a weather class
+* Weather class spec added
+* weather class added
+* All tests green
+* Add isStormy? spec 
