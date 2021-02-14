@@ -57,4 +57,7 @@ I want to prevent landing when weather is stormy
 * Weather class spec added
 * weather class added
 * All tests green
-* Add isStormy? spec 
+* Add isStormy? spec
+* All tests green
+* Add guard condition to land method so that planes can not land when it is stormy
+* Add spec for takeOff to prevent takeOff when weather is stormy
