@@ -1,0 +1,4 @@
+// weather class
+class Weather {
+  
+}
